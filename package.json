@@ -1,0 +1,21 @@
+{
+  "name": "onyx-api",
+  "version": "1.0.0",
+  "description": "ONYX scalable backend API for buildings and assessments.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "joi": "^17.7.0",
+    "jsonwebtoken": "^9.0.0",
+    "morgan": "^1.10.0",
+    "mysql2": "^3.6.0",
+    "uuid": "^9.0.0"
+  }
+}
