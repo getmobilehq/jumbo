@@ -69,11 +69,61 @@ curl -X POST http://localhost:3000/building-types/upload \
 ## Building Endpoints
 | Method | Endpoint         | Description                | Access      |
 |--------|------------------|---------------------------|-------------|
-| POST   | /buildings/       | Create building           | Admin only |
+| POST   | /buildings/       | Create building (all fields required, see below) | Admin only |
 | GET    | /buildings/       | List all buildings        | Authenticated |
 | GET    | /buildings/:id    | Get building by ID        | Authenticated |
 | PATCH  | /buildings/:id    | Update building           | Admin only |
 | DELETE | /buildings/:id    | Delete building           | Admin only |
+
+
+### Create Building (POST /buildings/)
+
+**Required fields:**
+- name
+- type
+- city
+- state
+- zip_code
+- address
+- year_built
+- cost_per_sqft
+- square_footage
+- description
+- image_url
+
+**Request Example:**
+```json
+{
+  "name": "Empire State Building",
+  "type": "Commercial",
+  "city": "New York",
+  "state": "NY",
+  "zip_code": "10118",
+  "address": "20 W 34th St",
+  "year_built": 1931,
+  "cost_per_sqft": 500.00,
+  "square_footage": 208879,
+  "description": "Iconic skyscraper",
+  "image_url": "http://example.com/image.jpg"
+}
+```
+
+**Success Response:**
+- HTTP 201 Created
+```json
+{
+  "id": "<building-uuid>"
+}
+```
+
+**Error Response (missing fields):**
+- HTTP 400 Bad Request
+```json
+{
+  "error": "Missing required fields",
+  "missing_fields": ["city", "address", "year_built"]
+}
+```
 
 ---
 

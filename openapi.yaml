@@ -498,13 +498,53 @@ components:
   schemas:
     Building:
       type: object
+      required:
+        - name
+        - type
+        - city
+        - state
+        - zip_code
+        - address
+        - year_built
+        - cost_per_sqft
+        - square_footage
+        - description
+        - image_url
       properties:
         name:
           type: string
-        address:
-          type: string
+          example: Empire State Building
         type:
           type: string
+          example: Commercial
+        city:
+          type: string
+          example: New York
+        state:
+          type: string
+          example: NY
+        zip_code:
+          type: string
+          example: '10118'
+        address:
+          type: string
+          example: 20 W 34th St
+        year_built:
+          type: integer
+          example: 1931
+        cost_per_sqft:
+          type: number
+          format: float
+          example: 500.00
+        square_footage:
+          type: integer
+          example: 208879
+        description:
+          type: string
+          example: Iconic skyscraper
+        image_url:
+          type: string
+          example: http://example.com/image.jpg
     FieldAssessment:
       type: object
       properties:

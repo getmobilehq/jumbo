@@ -23,7 +23,14 @@ exports.schemas = {
     building: Joi.object({
         name: Joi.string().min(2).required(),
         type: Joi.string().required(),
+        city: Joi.string().required(),
+        state: Joi.string().required(),
+        zip_code: Joi.string().required(),
+        address: Joi.string().required(),
+        year_built: Joi.number().integer().required(),
+        cost_per_sqft: Joi.number().positive().required(),
         square_footage: Joi.number().integer().min(1).required(),
-        cost_per_sqft: Joi.number().positive().required()
+        description: Joi.string().required(),
+        image_url: Joi.string().uri().required()
     })
 };

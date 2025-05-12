@@ -7,8 +7,11 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME,
 });
 
-exports.createBuilding = async ({ id, name, type, square_footage, cost_per_sqft }) => {
-    await pool.execute('INSERT INTO buildings (id, name, type, square_footage, cost_per_sqft) VALUES (?, ?, ?, ?, ?)', [id, name, type, square_footage, cost_per_sqft]);
+exports.createBuilding = async ({ id, name, type, city, state, zip_code, address, year_built, cost_per_sqft, square_footage, description, image_url, created_by }) => {
+    await pool.execute(
+        'INSERT INTO buildings (id, name, type, city, state, zip_code, address, year_built, cost_per_sqft, square_footage, description, image_url, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        [id, name, type, city, state, zip_code, address, year_built, cost_per_sqft, square_footage, description, image_url, created_by]
+    );
 };
 
 exports.getAllBuildings = async () => {

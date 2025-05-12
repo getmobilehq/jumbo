@@ -3,10 +3,30 @@ const buildingModel = require('../models/buildingModel');
 
 exports.createBuilding = async (req, res) => {
     try {
-        const { name, type, square_footage, cost_per_sqft } = req.body;
-        if (!name || !type) return res.status(400).json({ error: 'Name and type required' });
+        const requiredFields = [
+            'name', 'type', 'city', 'state', 'zip_code', 'address',
+            'year_built', 'cost_per_sqft', 'square_footage', 'description', 'image_url'
+        ];
+        const missing = requiredFields.filter(f => !req.body[f]);
+        if (missing.length) {
+            return res.status(400).json({
+                error: 'Missing required fields',
+                missing_fields: missing
+            });
+        }
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({ error: 'Unauthorized: missing user context' });
+        }
         const id = uuidv4();
-        await buildingModel.createBuilding({ id, name, type, square_footage, cost_per_sqft });
+        const {
+            name, type, city, state, zip_code, address,
+            year_built, cost_per_sqft, square_footage, description, image_url
+        } = req.body;
+        const created_by = req.user.id;
+        await buildingModel.createBuilding({
+            id, name, type, city, state, zip_code, address,
+            year_built, cost_per_sqft, square_footage, description, image_url, created_by
+        });
         res.status(201).json({ id });
     } catch (err) {
         res.status(500).json({ error: err.message });
