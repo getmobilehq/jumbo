@@ -15,10 +15,8 @@ paths:
           application/json:
             schema:
               type: object
-              required: [name, email, password, role]
+              required: [email, password, role]
               properties:
-                name:
-                  type: string
                 email:
                   type: string
                 password:
@@ -50,7 +48,7 @@ paths:
           description: Successful login
         '400':
           description: Validation error
-  /user/me:
+  /users/me:
     get:
       summary: Get current user
       security:
@@ -60,7 +58,7 @@ paths:
           description: Current user info
         '401':
           description: Unauthorized
-  /user:
+  /users:
     get:
       summary: List all users
       security:
@@ -72,7 +70,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-  /user/{id}:
+  /users/{id}:
     get:
       summary: Get user by ID
       security:
@@ -107,7 +105,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-  /building:
+  /buildings:
     post:
       summary: Create a building
       security:
@@ -136,7 +134,7 @@ paths:
           description: List of buildings
         '401':
           description: Unauthorized
-  /building/{id}:
+  /buildings/{id}:
     get:
       summary: Get building by ID
       security:
@@ -194,7 +192,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-  /buildingType:
+  /building-types:
     get:
       summary: List all building types
       security:
@@ -204,7 +202,7 @@ paths:
           description: List of building types
         '401':
           description: Unauthorized
-  /buildingType/{type}:
+  /building-types/{type}:
     get:
       summary: Get building type by key
       security:
@@ -220,7 +218,7 @@ paths:
           description: Building type info
         '401':
           description: Unauthorized
-  /auditLog:
+  /audit-logs:
     get:
       summary: List all audit logs
       security:
@@ -232,7 +230,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-  /auditLog/{id}:
+  /audit-logs/{id}:
     get:
       summary: Get audit log by ID
       security:
@@ -250,7 +248,7 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
-  /fieldAssessment:
+  /field-assessments:
     post:
       summary: Create field assessment
       security:
@@ -277,7 +275,7 @@ paths:
           description: List of field assessments
         '401':
           description: Unauthorized
-  /fieldAssessment/{id}:
+  /field-assessments/{id}:
     get:
       summary: Get field assessment by ID
       security:
@@ -293,7 +291,7 @@ paths:
           description: Field assessment info
         '401':
           description: Unauthorized
-  /fieldAssessment/building/{building_id}:
+  /field-assessments/building/{building_id}:
     get:
       summary: Get field assessments for a building
       security:
@@ -309,7 +307,7 @@ paths:
           description: List of field assessments for building
         '401':
           description: Unauthorized
-  /fieldAssessment/{id}/items:
+  /field-assessments/{id}/items:
     post:
       summary: Add items to a field assessment
       security:
@@ -346,7 +344,7 @@ paths:
           description: List of items
         '401':
           description: Unauthorized
-  /fieldAssessment/{id}/items/costs:
+  /field-assessments/{id}/items/costs:
     patch:
       summary: Update repair costs for assessment items
       security:
@@ -368,7 +366,7 @@ paths:
           description: Costs updated
         '401':
           description: Unauthorized
-  /preAssessment:
+  /pre-assessments:
     post:
       summary: Create pre-assessment
       security:
@@ -395,7 +393,7 @@ paths:
           description: List of pre-assessments
         '401':
           description: Unauthorized
-  /preAssessment/{id}:
+  /pre-assessments/{id}:
     get:
       summary: Get pre-assessment by ID
       security:
@@ -411,7 +409,7 @@ paths:
           description: Pre-assessment info
         '401':
           description: Unauthorized
-  /preAssessment/building/{building_id}:
+  /pre-assessments/building/{building_id}:
     get:
       summary: Get pre-assessments for a building
       security:
@@ -427,7 +425,7 @@ paths:
           description: List of pre-assessments for building
         '401':
           description: Unauthorized
-  /preAssessment/{id}/items:
+  /pre-assessments/{id}/items:
     post:
       summary: Add items to a pre-assessment
       security:

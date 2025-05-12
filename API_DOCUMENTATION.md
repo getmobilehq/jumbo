@@ -11,9 +11,17 @@ Most endpoints require a valid JWT token. Include it in the `Authorization` head
 ### Auth Endpoints
 | Method | Endpoint         | Description         | Body Params |
 |--------|------------------|--------------------|-------------|
-| POST   | /auth/register   | Register a user    | `{ name, email, password, role }` |
+| POST   | /auth/register   | Register a user    | `{ email, password, role }` |
 | POST   | /auth/login      | Login a user       | `{ email, password }` |
 
+**Registration example (POST /auth/register):**
+```json
+{
+  "email": "testuser@example.com",
+  "password": "TestPassword123!",
+  "role": "admin"
+}
+```
 ---
 
 ## User Endpoints
