@@ -26,6 +26,31 @@ Most endpoints require a valid JWT token. Include it in the `Authorization` head
 
 ## User Endpoints
 | Method | Endpoint         | Description         | Access      |
+
+---
+
+## Building Type CSV Upload
+
+**POST /building-types/upload**
+
+- Upload a CSV file to bulk insert building types.
+- Requires authentication (Bearer token).
+- CSV columns: `building_type`, `category`, `subcategory`
+
+**Sample CSV:**
+```csv
+building_type,category,subcategory
+Office,Commercial,High-rise
+Apartment,Residential,Multi-family
+```
+
+**Sample curl:**
+```bash
+curl -X POST http://localhost:3000/building-types/upload \
+  -H "Authorization: Bearer <YOUR_TOKEN>" \
+  -F "file=@building_types.csv"
+```
+
 |--------|------------------|--------------------|-------------|
 | GET    | /user/me         | Get current user   | Authenticated |
 | GET    | /user/           | List all users     | Admin only |

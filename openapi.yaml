@@ -204,7 +204,7 @@ paths:
           description: Unauthorized
   /building-types/{type}:
     get:
-      summary: Get building type by key
+      summary: Get building type by type
       security:
         - bearerAuth: []
       parameters:
@@ -218,6 +218,33 @@ paths:
           description: Building type info
         '401':
           description: Unauthorized
+        '404':
+          description: Not found
+  /building-types/upload:
+    post:
+      summary: Bulk upload building types via CSV
+      description: Upload a CSV file with columns building_type, category, subcategory.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Building types uploaded
+        '400':
+          description: Bad request (missing file or invalid CSV)
+        '401':
+          description: Unauthorized
+        '500':
+          description: Server error
   /audit-logs:
     get:
       summary: List all audit logs

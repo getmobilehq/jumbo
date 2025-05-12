@@ -9,8 +9,17 @@ const buildingRoutes = require('./routes/building');
 const buildingTypeRoutes = require('./routes/buildingType');
 
 const app = express();
+
+// Robust CORS configuration
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
+
 app.use(express.json());
-app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 

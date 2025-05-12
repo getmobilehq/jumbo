@@ -16,3 +16,11 @@ exports.getBuildingTypeByType = async (type) => {
     const [rows] = await pool.execute('SELECT * FROM building_type_mappings WHERE building_type = ?', [type]);
     return rows;
 };
+
+exports.bulkInsertBuildingTypes = async (rows) => {
+    if (!rows.length) return;
+    const values = rows.map(r => [r.id, r.building_type, r.category, r.subcategory]);
+    await pool.query(
+        'INSERT INTO building_type_mappings (id, building_type, category, subcategory) VALUES ?',[values]
+    );
+};
