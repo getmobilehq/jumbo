@@ -14,6 +14,12 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 
+// Swagger UI setup
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./openapi.yaml');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/buildings', buildingRoutes);

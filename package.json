@@ -16,6 +16,8 @@
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.0",
-    "uuid": "^9.0.0"
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^9.0.0",
+    "yamljs": "^0.3.0"
   }
 }
