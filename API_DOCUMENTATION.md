@@ -14,6 +14,7 @@ Most endpoints require a valid JWT token. Include it in the `Authorization` head
 | POST   | /auth/register   | Register a user    | `{ email, password, role }` |
 | POST   | /auth/login      | Login a user       | `{ email, password }` |
 
+
 **Registration example (POST /auth/register):**
 ```json
 {
@@ -26,6 +27,12 @@ Most endpoints require a valid JWT token. Include it in the `Authorization` head
 
 ## User Endpoints
 | Method | Endpoint         | Description         | Access      |
+|--------|------------------|--------------------|-------------|
+| GET    | /users/me         | Get current user   | Authenticated |
+| GET    | /users/           | List all users     | Admin only |
+| GET    | /users/:id        | Get user by ID     | Admin only |
+| DELETE | /users/:id        | Delete user by ID  | Admin only |
+
 
 ---
 
@@ -62,40 +69,40 @@ curl -X POST http://localhost:3000/building-types/upload \
 ## Building Endpoints
 | Method | Endpoint         | Description                | Access      |
 |--------|------------------|---------------------------|-------------|
-| POST   | /building/       | Create building           | Admin only |
-| GET    | /building/       | List all buildings        | Authenticated |
-| GET    | /building/:id    | Get building by ID        | Authenticated |
-| PATCH  | /building/:id    | Update building           | Admin only |
-| DELETE | /building/:id    | Delete building           | Admin only |
+| POST   | /buildings/       | Create building           | Admin only |
+| GET    | /buildings/       | List all buildings        | Authenticated |
+| GET    | /buildings/:id    | Get building by ID        | Authenticated |
+| PATCH  | /buildings/:id    | Update building           | Admin only |
+| DELETE | /buildings/:id    | Delete building           | Admin only |
 
 ---
 
 ## Building Type Endpoints
 | Method | Endpoint                 | Description              | Access      |
 |--------|--------------------------|--------------------------|-------------|
-| GET    | /buildingType/           | List all building types  | Authenticated |
-| GET    | /buildingType/:type      | Get building type by key | Authenticated |
+| GET    | /building-types/           | List all building types  | Authenticated |
+| GET    | /building-types/:type      | Get building type by type | Authenticated |
 
 ---
 
 ## Audit Log Endpoints
 | Method | Endpoint         | Description         | Access      |
 |--------|------------------|--------------------|-------------|
-| GET    | /auditLog/       | List all audit logs| Admin only |
-| GET    | /auditLog/:id    | Get audit log by ID| Admin only |
+| GET    | /audit-logs/       | List all audit logs| Admin only |
+| GET    | /audit-logs/:id    | Get audit log by ID| Admin only |
 
 ---
 
 ## Field Assessment Endpoints
 | Method | Endpoint                               | Description                              | Access      |
 |--------|----------------------------------------|------------------------------------------|-------------|
-| POST   | /fieldAssessment/                      | Create field assessment                  | Authenticated |
-| GET    | /fieldAssessment/                      | List all field assessments               | Authenticated |
-| GET    | /fieldAssessment/:id                   | Get field assessment by ID               | Authenticated |
-| GET    | /fieldAssessment/building/:building_id | Get field assessments for a building     | Authenticated |
-| POST   | /fieldAssessment/:id/items             | Add items to a field assessment          | Authenticated |
-| GET    | /fieldAssessment/:id/items             | Get items for a field assessment         | Authenticated |
-| PATCH  | /fieldAssessment/:id/items/costs       | Update repair costs for assessment items | Authenticated |
+| POST   | /field-assessments/                      | Create field assessment                  | Authenticated |
+| GET    | /field-assessments/                      | List all field assessments               | Authenticated |
+| GET    | /field-assessments/:id                   | Get field assessment by ID               | Authenticated |
+| GET    | /field-assessments/building/:building_id | Get field assessments for a building     | Authenticated |
+| POST   | /field-assessments/:id/items             | Add items to a field assessment          | Authenticated |
+| GET    | /field-assessments/:id/items             | Get items for a field assessment         | Authenticated |
+| PATCH  | /field-assessments/:id/items/costs       | Update repair costs for assessment items | Authenticated |
 
 ---
 
