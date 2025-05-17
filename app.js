@@ -7,6 +7,8 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const buildingRoutes = require('./routes/building');
 const buildingTypeRoutes = require('./routes/buildingType');
+const buildingAnalyticsRoutes = require('./routes/buildingAnalytics');
+const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -33,11 +35,22 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/buildings', buildingRoutes);
 app.use('/building-types', buildingTypeRoutes);
+app.use('/building-analytics', buildingAnalyticsRoutes);
 app.use('/pre-assessments', require('./routes/preAssessment'));
 app.use('/field-assessments', require('./routes/fieldAssessment'));
 app.use('/audit-logs', require('./routes/auditLog'));
 
 app.get('/', (req, res) => res.send('ONYX API - Scalable Backend'));
 
+// Global error handler - must be after all routes
+app.use(errorHandler);
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`ONYX API running on port ${PORT}`));
+
+// Only start the server if this file is run directly (not when required by tests)
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`ONYX API running on port ${PORT}`));
+}
+
+// Export app for testing
+module.exports = app;

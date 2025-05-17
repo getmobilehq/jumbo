@@ -39,3 +39,13 @@ exports.updateBuilding = async (id, data) => {
 exports.deleteBuilding = async (id) => {
     await pool.execute('DELETE FROM buildings WHERE id = ?', [id]);
 };
+
+exports.getBuildingsByType = async (type) => {
+    const [rows] = await pool.execute('SELECT * FROM buildings WHERE type = ?', [type]);
+    return rows;
+};
+
+exports.getBuildingsByState = async (state) => {
+    const [rows] = await pool.execute('SELECT * FROM buildings WHERE state = ?', [state]);
+    return rows;
+};

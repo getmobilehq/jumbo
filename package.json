@@ -4,7 +4,8 @@
   "description": "ONYX scalable backend API for buildings and assessments.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "jest --forceExit"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -21,5 +22,9 @@
     "swagger-ui-express": "^5.0.1",
     "uuid": "^9.0.1",
     "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.1"
   }
 }

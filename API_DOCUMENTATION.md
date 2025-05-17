@@ -142,6 +142,39 @@ curl -X POST http://localhost:3000/building-types/upload \
 | GET    | /building-types/           | List all building types  | Authenticated |
 | GET    | /building-types/:type      | Get building type by type | Authenticated |
 
+## Building Analytics Endpoints
+
+### Building Statistics and Insights
+
+| Method | Endpoint                           | Description                      | Access      |
+|--------|-----------------------------------|----------------------------------|-------------|
+| GET    | /building-analytics/summary        | Get analytics summary for all buildings | Authenticated |
+| GET    | /building-analytics/by-type/:type  | Get buildings filtered by type  | Authenticated |
+| GET    | /building-analytics/by-state/:state | Get buildings and statistics by state | Authenticated |
+
+#### Analytics Summary Response Example
+
+```json
+{
+  "totalBuildings": 25,
+  "totalSquareFootage": 350000,
+  "averageSquareFootage": 14000,
+  "averageCostPerSqft": 225.50,
+  "buildingsByType": {
+    "Commercial": 12,
+    "Residential": 8,
+    "Industrial": 5
+  },
+  "buildingsByState": {
+    "NY": 8,
+    "CA": 7,
+    "TX": 5,
+    "FL": 5
+  },
+  "estimatedTotalValue": "78925000.00"
+}
+```
+
 ## Audit Log Endpoints
 
 ### Audit Log Management
