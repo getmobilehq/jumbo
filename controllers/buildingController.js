@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const buildingModel = require('../models/buildingModel');
+const buildingTypeModel = require('../models/buildingTypeModel');
 
 exports.createBuilding = async (req, res) => {
     try {
@@ -17,14 +18,21 @@ exports.createBuilding = async (req, res) => {
         if (!req.user || !req.user.id) {
             return res.status(401).json({ error: 'Unauthorized: missing user context' });
         }
+        // Validate type exists in building_type_mappings
+        const typeRows = await buildingTypeModel.getBuildingTypeByType(type);
+        if (!typeRows || typeRows.length === 0) {
+            return res.status(400).json({
+                error: `Invalid type: ${type}. Must match a building_type in building_type_mappings.`
+            });
+        }
         const id = uuidv4();
         const {
-            name, type, city, state, zip_code, address,
+            name, type: validatedType, city, state, zip_code, address,
             year_built, cost_per_sqft, square_footage, description, image_url
         } = req.body;
         const created_by = req.user.id;
         await buildingModel.createBuilding({
-            id, name, type, city, state, zip_code, address,
+            id, name, type: validatedType, city, state, zip_code, address,
             year_built, cost_per_sqft, square_footage, description, image_url, created_by
         });
         res.status(201).json({ id });

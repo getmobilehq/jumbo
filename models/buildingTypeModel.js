@@ -8,7 +8,8 @@ const pool = mysql.createPool({
 });
 
 exports.getAllBuildingTypes = async () => {
-    const [rows] = await pool.execute('SELECT DISTINCT building_type FROM building_type_mappings');
+    // Return complete records with building_type, category, and subcategory
+    const [rows] = await pool.execute('SELECT building_type, category, subcategory FROM building_type_mappings');
     return rows;
 };
 
