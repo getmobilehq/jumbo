@@ -4,7 +4,7 @@
  */
 const express = require('express');
 const router = express.Router();
-const { authenticate } = require('../middleware/auth');
+const { authenticate } = require('../middleware/authMiddleware');
 const buildingAnalyticsController = require('../controllers/buildingAnalyticsController');
 
 // Get analytics summary for all buildings
